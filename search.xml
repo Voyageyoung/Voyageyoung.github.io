@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/01/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>Hexo 搭建博客</title>
+    <url>/2021/01/19/hexo/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>第一篇博客！希望以后可能还会有……本文主要介绍了Hexo搭建博客的主要步骤以及相关问题，供回顾与参考 </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>   
+
+<blockquote>
+<p>搭建前提：安装 <code>node.js</code> 和 <code>hexo</code><br>可以使用 <code>node -v</code> 和 <code>hexo v</code> 查看是否安装成功</p>
+</blockquote>
+<h3 id="x2728-建立博客站点"><a href="#x2728-建立博客站点" class="headerlink" title="&#x2728; 建立博客站点"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 建立博客站点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init myblog    # 初始化 hexo</span><br><span class="line">cd myblog   # 进入 myblog 文件夹</span><br><span class="line">npm install # 下载相关的依赖包</span><br><span class="line">hexo generate | hexo g  # 生成静态页面或文件</span><br><span class="line">hexo server # start a  local server, at localhost:4000</span><br></pre></td></tr></table></figure>
+<h3 id="x2728-将-hexo-部署到-GitHub"><a href="#x2728-将-hexo-部署到-GitHub" class="headerlink" title="&#x2728; 将 hexo 部署到 GitHub"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 将 hexo 部署到 GitHub</h3><p>将<code>hexo</code>和<code>GitHub</code>关联起来，将<code>hexo</code>生成的文章部署到<code>GitHub</code>上，打开站点配置文件 <code>_config.yml</code>, 修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<p>这时候需要先安装<code>deploy-git</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  # 清除之前生成的东西</span><br><span class="line">hexo g  # 生成静态文章</span><br><span class="line">hexo deploy | hexo d # 部署文章</span><br></pre></td></tr></table></figure>
+<p><span class="emoji" alias="sunglasses" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">&#x1f60e;</span> 输入<code>username</code>和<code>password</code>后就可以访问<a href="http://voyageyoung.github.io/">个人博客网站</a></p>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>guide</category>
       </categories>
       <tags>
-        <tag>guide</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
