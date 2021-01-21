@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>vue-learn</title>
-    <url>/2021/01/20/vue-learn/</url>
+    <title>Hexo 搭建博客</title>
+    <url>/2021/01/19/hexo/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>第一篇博客！希望以后可能还会有……本文主要介绍了Hexo搭建博客的主要步骤以及相关问题，供回顾与参考 </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>   
+
+<blockquote>
+<p>搭建前提：安装 <code>node.js</code> 和 <code>hexo</code><br>可以使用 <code>node -v</code> 和 <code>hexo v</code> 查看是否安装成功</p>
+</blockquote>
+<h3 id="x2728-建立博客站点"><a href="#x2728-建立博客站点" class="headerlink" title="&#x2728; 建立博客站点"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 建立博客站点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init myblog    # 初始化 hexo</span><br><span class="line">cd myblog   # 进入 myblog 文件夹</span><br><span class="line">npm install # 下载相关的依赖包</span><br><span class="line">hexo generate | hexo g  # 生成静态页面或文件</span><br><span class="line">hexo server # start a  local server, at localhost:4000</span><br></pre></td></tr></table></figure>
+<h3 id="x2728-将-hexo-部署到-GitHub"><a href="#x2728-将-hexo-部署到-GitHub" class="headerlink" title="&#x2728; 将 hexo 部署到 GitHub"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 将 hexo 部署到 GitHub</h3><p>将<code>hexo</code>和<code>GitHub</code>关联起来，将<code>hexo</code>生成的文章部署到<code>GitHub</code>上，打开站点配置文件 <code>_config.yml</code>, 修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<p>这时候需要先安装<code>deploy-git</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  # 清除之前生成的东西</span><br><span class="line">hexo g  # 生成静态文章</span><br><span class="line">hexo deploy | hexo d # 部署文章</span><br></pre></td></tr></table></figure>
+<p><span class="emoji" alias="sunglasses" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">&#x1f60e;</span> 输入<code>username</code>和<code>password</code>后就可以访问<a href="http://voyageyoung.github.io/">个人博客网站</a></p>
+]]></content>
+      <categories>
+        <category>guide</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-learn-1</title>
+    <url>/2021/01/20/vue-learn-1/</url>
     <content><![CDATA[<h3 id="Vue-实例-x1f386"><a href="#Vue-实例-x1f386" class="headerlink" title="Vue 实例 &#x1f386;"></a>Vue 实例 <span class="emoji" alias="fireworks" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f386.png?v8">&#x1f386;</span></h3><blockquote>
 <p>每一个 <code>Vue</code> 应用都是通过用 <code>Vue</code> 函数创建一个新的<code>Vue</code>实例开始的：</p>
 </blockquote>
@@ -51,7 +80,27 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div id&#x3D;&quot;watch-example&quot;&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    Ask a yes&#x2F;no question:</span><br><span class="line">    &lt;input v-model&#x3D;&quot;question&quot;&gt;</span><br><span class="line">  &lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; answer &#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 --&gt;</span><br><span class="line">&lt;!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 --&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;axios@0.12.0&#x2F;dist&#x2F;axios.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;lodash@4.13.1&#x2F;lodash.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var watchExampleVM &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#watch-example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    question: &#39;&#39;,</span><br><span class="line">    answer: &#39;I cannot give you an answer until you ask a question!&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    &#x2F;&#x2F; 如果 &#96;question&#96; 发生改变，这个函数就会运行</span><br><span class="line">    question: function (newQuestion, oldQuestion) &#123;</span><br><span class="line">      this.answer &#x3D; &#39;Waiting for you to stop typing...&#39;</span><br><span class="line">      this.debouncedGetAnswer()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created: function () &#123;</span><br><span class="line">    &#x2F;&#x2F; &#96;_.debounce&#96; 是一个通过 Lodash 限制操作频率的函数。</span><br><span class="line">    &#x2F;&#x2F; 在这个例子中，我们希望限制访问 yesno.wtf&#x2F;api 的频率</span><br><span class="line">    &#x2F;&#x2F; AJAX 请求直到用户输入完毕才会发出。想要了解更多关于</span><br><span class="line">    &#x2F;&#x2F; &#96;_.debounce&#96; 函数 (及其近亲 &#96;_.throttle&#96;) 的知识，</span><br><span class="line">    &#x2F;&#x2F; 请参考：https:&#x2F;&#x2F;lodash.com&#x2F;docs#debounce</span><br><span class="line">    this.debouncedGetAnswer &#x3D; _.debounce(this.getAnswer, 500)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getAnswer: function () &#123;</span><br><span class="line">      if (this.question.indexOf(&#39;?&#39;) &#x3D;&#x3D;&#x3D; -1) &#123;</span><br><span class="line">        this.answer &#x3D; &#39;Questions usually contain a question mark. ;-)&#39;</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      this.answer &#x3D; &#39;Thinking...&#39;</span><br><span class="line">      var vm &#x3D; this</span><br><span class="line">      axios.get(&#39;https:&#x2F;&#x2F;yesno.wtf&#x2F;api&#39;)</span><br><span class="line">        .then(function (response) &#123;</span><br><span class="line">          vm.answer &#x3D; _.capitalize(response.data.answer)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(function (error) &#123;</span><br><span class="line">          vm.answer &#x3D; &#39;Error! Could not reach the API. &#39; + error</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Class-与-Style-绑定"><a href="#Class-与-Style-绑定" class="headerlink" title="Class 与 Style 绑定"></a>Class 与 Style 绑定</h3><h4 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  class&#x3D;&quot;static&quot;</span><br><span class="line">  v-bind:class&#x3D;&quot;&#123; active: isActive, &#39;text-danger&#39;: hasError &#125;&quot;</span><br><span class="line">&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-learn-2</title>
+    <url>/2021/01/21/vue-learn-2/</url>
+    <content><![CDATA[<h3 id="Class-与-Style-绑定"><a href="#Class-与-Style-绑定" class="headerlink" title="Class 与 Style 绑定"></a>Class 与 Style 绑定</h3><h4 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  class&#x3D;&quot;static&quot;</span><br><span class="line">  v-bind:class&#x3D;&quot;&#123; active: isActive, &#39;text-danger&#39;: hasError &#125;&quot;</span><br><span class="line">&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  isActive: true,</span><br><span class="line">  hasError: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>active</code> 这个 <code>class</code> 是否存在取决于数据 property <code>isActive</code> 的值<br>上述渲染结果为：<br><code>&lt;div class=&quot;static active&quot;&gt;&lt;/div&gt;</code><br>上述的等价表述：</p>
@@ -59,11 +108,10 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div v-bind:class&#x3D;&quot;classObject&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line">  classObject: &#123;</span><br><span class="line">    active: true,</span><br><span class="line">    &#39;text-danger&#39;: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="数组语法-x1f44d"><a href="#数组语法-x1f44d" class="headerlink" title="数组语法 &#x1f44d;"></a>数组语法 <span class="emoji" alias="thumbsup" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png?v8">&#x1f44d;</span></h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;[activeClass, errorClass]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeClass: <span class="string">&#x27;active&#x27;</span>,</span><br><span class="line">  errorClass: <span class="string">&#x27;text-danger&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-渲染为：<code>&lt;div class=&quot;active text-danger&quot;&gt;&lt;/div&gt;</code><h4 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h4><blockquote>
+<p>渲染为：<code>&lt;div class=&quot;active text-danger&quot;&gt;&lt;/div&gt;</code></p>
+<h4 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h4><blockquote>
 <p>CSS property 名可以用驼峰式或短横线分隔来命名  </p>
 </blockquote>
-</li>
-</ul>
 <p><span class="emoji" alias="one" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0031-20e3.png?v8">&#x0031;&#xfe0f;&#x20e3;</span>  </p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;&#123; color: activeColor, fontSize: fontSize + &#x27;px&#x27; &#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeColor: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">  fontSize: <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -71,7 +119,7 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;styleObject&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  styleObject: &#123;</span><br><span class="line">    color: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">    fontSize: <span class="string">&#x27;13px&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><h4 id="v-if-v-else-if-v-else"><a href="#v-if-v-else-if-v-else" class="headerlink" title="v-if | v-else-if | v-else"></a>v-if | v-else-if | v-else</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">&quot;type === &#x27;A&#x27;&quot;</span>&gt;</span></span><br><span class="line">  A</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;B&#x27;&quot;</span>&gt;</span></span><br><span class="line">  B</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;C&#x27;&quot;</span>&gt;</span></span><br><span class="line">  C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  Not A/B/C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id=""><a href="#" class="headerlink" title=""></a><template></h4><blockquote>
+<h4 id="template-标签的使用"><a href="#template-标签的使用" class="headerlink" title="template 标签的使用"></a>template 标签的使用</h4><blockquote>
 <p>使用 <code>&lt;template&gt;</code> 当做不可见的包裹元素，并在上面使用 <code>v-if</code> 。最终的渲染结果不包含 <code>&lt;template&gt;</code> 元素  </p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;ok&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -88,48 +136,12 @@
 <p>不会变更原始数组，总是返回新数组<br>filter()、concat()、slice()  </p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-for</span>=<span class="string">&quot;set in sets&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;n in even(set)&quot;</span>&gt;</span>&#123;&#123; n &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  sets: [[ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]]</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  even: <span class="function"><span class="keyword">function</span> (<span class="params">numbers</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-]]></content>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  sets: [[ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]]</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  even: <span class="function"><span class="keyword">function</span> (<span class="params">numbers</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>前端</category>
       </categories>
       <tags>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 搭建博客</title>
-    <url>/2021/01/19/hexo/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>第一篇博客！希望以后可能还会有……本文主要介绍了Hexo搭建博客的主要步骤以及相关问题，供回顾与参考 </p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>   
-
-<blockquote>
-<p>搭建前提：安装 <code>node.js</code> 和 <code>hexo</code><br>可以使用 <code>node -v</code> 和 <code>hexo v</code> 查看是否安装成功</p>
-</blockquote>
-<h3 id="x2728-建立博客站点"><a href="#x2728-建立博客站点" class="headerlink" title="&#x2728; 建立博客站点"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 建立博客站点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init myblog    # 初始化 hexo</span><br><span class="line">cd myblog   # 进入 myblog 文件夹</span><br><span class="line">npm install # 下载相关的依赖包</span><br><span class="line">hexo generate | hexo g  # 生成静态页面或文件</span><br><span class="line">hexo server # start a  local server, at localhost:4000</span><br></pre></td></tr></table></figure>
-<h3 id="x2728-将-hexo-部署到-GitHub"><a href="#x2728-将-hexo-部署到-GitHub" class="headerlink" title="&#x2728; 将 hexo 部署到 GitHub"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 将 hexo 部署到 GitHub</h3><p>将<code>hexo</code>和<code>GitHub</code>关联起来，将<code>hexo</code>生成的文章部署到<code>GitHub</code>上，打开站点配置文件 <code>_config.yml</code>, 修改如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-<p>这时候需要先安装<code>deploy-git</code>:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>然后：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  # 清除之前生成的东西</span><br><span class="line">hexo g  # 生成静态文章</span><br><span class="line">hexo deploy | hexo d # 部署文章</span><br></pre></td></tr></table></figure>
-<p><span class="emoji" alias="sunglasses" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">&#x1f60e;</span> 输入<code>username</code>和<code>password</code>后就可以访问<a href="http://voyageyoung.github.io/">个人博客网站</a></p>
-]]></content>
-      <categories>
-        <category>guide</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
