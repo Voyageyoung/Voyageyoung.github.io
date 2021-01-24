@@ -196,6 +196,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://voyageyoung.github.io/2021/01/24/vue-learn-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Li">
+      <meta itemprop="description" content="Forever young！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Voyageyoung">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/24/vue-learn-4/" class="post-title-link" itemprop="url">vue-learn-4</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-24 10:46:48 / 修改时间：12:50:02" itemprop="dateCreated datePublished" datetime="2021-01-24T10:46:48+08:00">2021-01-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="💥-表单输入绑定"><a href="#💥-表单输入绑定" class="headerlink" title="💥 表单输入绑定"></a>💥 表单输入绑定</h3><blockquote>
+<p>使用 <code>v-model</code> 指令在表单 <code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code>、<code>&lt;select&gt;</code> 元素上创建双向绑定, 但要<strong>注意</strong>:  </p>
+<blockquote>
+<p>🐞 <code>v-model</code> 忽略所有表单元素的 <code>value</code>、<code>checkd</code>、<code>selected</code> 的初始值而将组件中的 <code>data</code> 选项声明的初始值作为数据来源<br><code>v-model</code> 针对不同的标签使用不同的 <code>property</code> 和事件：</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>text / textarea 使用 <code>value</code> property 和 <code>input</code> 事件</li>
+<li>checkbox / radio 使用 <code>checked</code> property 和 <code>change</code> 事件</li>
+<li>select 使用 <code>value</code> property 和 <code>change</code> 事件<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;example&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">id</span>=<span class="string">&quot;jack&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Jack&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;checkedNames&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;jack&quot;</span>&gt;</span>Jack<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">id</span>=<span class="string">&quot;john&quot;</span> <span class="attr">value</span>=<span class="string">&quot;John&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;checkedNames&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;john&quot;</span>&gt;</span>John<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Checked names: &#123;&#123; checkedNames &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">&#x27;#example&#x27;</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        checkNames: []</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+🌀 <span color="red">在一般的 <code>html</code> 中, 我们把复选框的 <code>name</code> 属性作为标识, 在 <code>vue</code> 中就用 <code>v-model</code> 代替它, <code>v-model</code> 里的都是 <code>data</code> 里的东西</span><br><br><br><h4 id="v-bind-实现-property-动态绑定"><a href="#v-bind-实现-property-动态绑定" class="headerlink" title="v-bind 实现 property 动态绑定"></a><code>v-bind</code> 实现 property 动态绑定</h4><span class="emoji" alias="one" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0031-20e3.png?v8">&#x0031;&#xfe0f;&#x20e3;</span> 单选按钮<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type&#x3D;&quot;radio&quot; v-model&#x3D;&quot;pick&quot; v-bind:value&#x3D;&quot;a&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 当选中时</span><br><span class="line">vm.pick &#x3D;&#x3D;&#x3D; vm.a</span><br></pre></td></tr></table></figure>
+<span class="emoji" alias="two" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0032-20e3.png?v8">&#x0032;&#xfe0f;&#x20e3;</span> 选择框的选项<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select v-model&#x3D;&quot;selected&quot;&gt;</span><br><span class="line">    &lt;!-- 内联对象字面量 --&gt;</span><br><span class="line">  &lt;option v-bind:value&#x3D;&quot;&#123; number: 123 &#125;&quot;&gt;123&lt;&#x2F;option&gt;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 当选中时</span><br><span class="line">typeof vm.selected &#x2F;&#x2F; &#x3D;&gt; &#39;object&#39;</span><br><span class="line">vm.selected.number &#x2F;&#x2F; &#x3D;&gt; 123</span><br></pre></td></tr></table></figure>
+<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><blockquote>
+<p>使用修饰符：<code>v-model.##</code></p>
+</blockquote>
+</li>
+<li><code>.lazy</code>: <code>v-model</code> 在每次 <code>input</code> 事件触发后将输入框的值与数据进行同步, 添加 <code>.lazy</code> 后转为在 <code>change</code> 事件之后同步</li>
+<li><code>.number</code>: 将用户输入值转为数值类型</li>
+<li><code>.trim</code>: 自动过滤用户输入的首尾空白字符<br></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://voyageyoung.github.io/2021/01/21/vue-learn-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -665,7 +755,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
