@@ -28,7 +28,7 @@
 <meta property="og:description" content="💥 初—自定义组件12345678Vue.component(&amp;#x27;button-counter&amp;#x27;, &amp;#123;  data: function () &amp;#123;    return &amp;#123;      count: 0    &amp;#125;  &amp;#125;,  template: &amp;#x27;&lt;button v-on:click&#x3D;&quot;count++&amp;quot">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-24T04:53:42.000Z">
-<meta property="article:modified_time" content="2021-01-24T10:19:09.310Z">
+<meta property="article:modified_time" content="2021-01-24T11:39:02.670Z">
 <meta property="article:author" content="Yang Li">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-01-24 12:53:42 / 修改时间：18:19:09" itemprop="dateCreated datePublished" datetime="2021-01-24T12:53:42+08:00">2021-01-24</time>
+              <time title="创建时间：2021-01-24 12:53:42 / 修改时间：19:39:02" itemprop="dateCreated datePublished" datetime="2021-01-24T12:53:42+08:00">2021-01-24</time>
             </span>
 
           
@@ -259,20 +259,26 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- html 内容 --&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;blog-posts-events-demo&quot;&gt;</span><br><span class="line">  &lt;div :style&#x3D;&quot;&#123; fontSize: postFontSize + &#39;em&#39; &#125;&quot;&gt;</span><br><span class="line">    &lt;blog-post</span><br><span class="line">      v-on:enlarge-text&#x3D;&quot;postFontSize +&#x3D; 0.1&quot;</span><br><span class="line">      v-for&#x3D;&quot;post in posts&quot;</span><br><span class="line">      v-bind:key&#x3D;&quot;post.id&quot;</span><br><span class="line">      v-bind:post&#x3D;&quot;post&quot;</span><br><span class="line">    &gt;&lt;&#x2F;blog-post&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!-- 父组件通过 v-on 监听子组件--&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 先注册自定义组件</span><br><span class="line">Vue.component(&#39;blog-post&#39;, &#123;</span><br><span class="line">  props: [&#39;post&#39;],</span><br><span class="line">  template: &#96;</span><br><span class="line">    &lt;div class&#x3D;&quot;blog-post&quot;&gt;</span><br><span class="line">      &lt;h3&gt;&#123;&#123; post.title &#125;&#125;&lt;&#x2F;h3&gt;</span><br><span class="line">      &lt;button v-on:click&#x3D;&quot;$emit(&#39;enlarge-text&#39;)&quot;&gt;</span><br><span class="line">        Enlarge text</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">      &lt;div v-html&#x3D;&quot;post.content&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &#96;</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; 子组件通过 &#96;$emit&#96;方法传入事件名称并触发</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 创建 Vue 实例</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#39;#blog-posts-events-demo&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    posts: [&#123;id: 1, title: &#39;haha&#39;, content: &#39;hiahia&#39;&#125;],</span><br><span class="line">    postFontSize: 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 🐞 当然也可以以传入参数的方式：
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 父组件 --&gt;</span></span><br><span class="line">v-on:enlarge-text=&quot;postFontSize += $event&quot;</span><br><span class="line"><span class="comment">&lt;!-- 子组件 --&gt;</span></span><br><span class="line">v-on:click=&quot;$emit(&#x27;enlarge-text&#x27;, 0.1)&quot;</span><br></pre></td></tr></table></figure>
-> 🌟 注意是 `$event` !
+> 🌟 注意是 `$event` !  
+> 
 ### 💥 组件使用 `v-model`
-> 🛠 个人理解:
-> `v-bind` 连接的 `attribute` 并非随意的, 只有在父组件中才可以任意定义, 子组件调用系统规定的一些如：`click`, 并调用父组件的方法
+
+</li>
+</ul>
+<blockquote>
+<p>🛠 个人理解:<br><code>v-bind</code> 连接的 <code>attribute</code> 并非随意的, 只有在父组件中才可以任意定义, 子组件调用系统规定的一些如：<code>click</code>, 并调用父组件的方法</p>
+</blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;custom-input&#x27;</span>, &#123;</span><br><span class="line">  props: [<span class="string">&#x27;value&#x27;</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;input</span></span><br><span class="line"><span class="string">      v-bind:value=&quot;value&quot;</span></span><br><span class="line"><span class="string">      v-on:input=&quot;$emit(&#x27;input&#x27;, $event.target.value)&quot;</span></span><br><span class="line"><span class="string">    &gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">custom-input</span> <span class="attr">v-model</span>=<span class="string">&quot;searchText&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
-> 🛠 注册组件注意点：  
-> * 将 `value` attribute 绑定到 `value` 的 prop上  
-> * 将 `input` 事件值重定义
-> 
-其实上述的 `v-model` 等价于:  
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;custom-input</span><br><span class="line">  v-bind:value=&quot;searchText&quot;</span><br><span class="line">  v-on:input=&quot;searchText = $event&quot;</span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<blockquote>
+<p>🛠 注册组件注意点：  </p>
+<ul>
+<li>将 <code>value</code> attribute 绑定到 <code>value</code> 的 prop上  </li>
+<li>将 <code>input</code> 事件值重定义</li>
 </ul>
-
+</blockquote>
+<p>其实上述的 <code>v-model</code> 等价于:  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;custom-input</span><br><span class="line">  v-bind:value=&quot;searchText&quot;</span><br><span class="line">  v-on:input=&quot;searchText = $event&quot;</span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
