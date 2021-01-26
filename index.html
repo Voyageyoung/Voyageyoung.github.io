@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-26 11:15:21" itemprop="dateModified" datetime="2021-01-26T11:15:21+08:00">2021-01-26</time>
+                <time title="修改时间：2021-01-26 11:27:12" itemprop="dateModified" datetime="2021-01-26T11:27:12+08:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,7 +294,18 @@
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; slotProps.user.firstName &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>⭐ 包含所有 <code>插槽 prop</code> 的对象命名为 <code>slotProps</code><br>⭐ 可以缩写为: <template v-slot="slotProps"><br>⭐ <code>v-slot</code> 可以缩写为 <code>#</code>, <strong>但是</strong>只有在其有参数才可以缩写, 像 <code>v-slot=&quot;user&quot;</code> 不能写成: <code>#=&quot;user&quot;</code><br>⭐ 默认插槽的缩写语法不可和具名插槽混用<br>⭐ 出现多个插槽, 且要使用这种语法, 就使用完整的基于 <code>&lt;template&gt;</code> 的语法, 像这样: </p>
+<ul>
+<li><p>包含所有 <code>插槽 prop</code> 的对象命名为 <code>slotProps</code></p>
+</li>
+<li><p>可以缩写为: <code>&lt;template v-slot=&quot;slotProps&quot;&gt;</code></p>
+</li>
+<li><p><code>v-slot</code> 可以缩写为 <code>#</code>, <strong>但是</strong>只有在其有参数才可以缩写, 像 <code>v-slot=&quot;user&quot;</code> 不能写成: <code>#=&quot;user&quot;</code></p>
+</li>
+<li><p>默认插槽的缩写语法不可和具名插槽混用</p>
+</li>
+<li><p>出现多个插槽, 且要使用这种语法, 就使用完整的基于 <code>&lt;template&gt;</code> 的语法, 像这样: </p>
+</li>
+</ul>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; slotProps.user.firstName &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:other</span>=<span class="string">&quot;otherSlotProps&quot;</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>

@@ -1,74 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo 搭建博客</title>
-    <url>/2021/01/19/hexo/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>第一篇博客！希望以后可能还会有……本文主要介绍了Hexo搭建博客的主要步骤以及相关问题，供回顾与参考 </p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>   
-
-<blockquote>
-<p>搭建前提：安装 <code>node.js</code> 和 <code>hexo</code><br>可以使用 <code>node -v</code> 和 <code>hexo v</code> 查看是否安装成功</p>
-</blockquote>
-<h3 id="x2728-建立博客站点"><a href="#x2728-建立博客站点" class="headerlink" title="&#x2728; 建立博客站点"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 建立博客站点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init myblog    # 初始化 hexo</span><br><span class="line">cd myblog   # 进入 myblog 文件夹</span><br><span class="line">npm install # 下载相关的依赖包</span><br><span class="line">hexo generate | hexo g  # 生成静态页面或文件</span><br><span class="line">hexo server # start a  local server, at localhost:4000</span><br></pre></td></tr></table></figure>
-<h3 id="x2728-将-hexo-部署到-GitHub"><a href="#x2728-将-hexo-部署到-GitHub" class="headerlink" title="&#x2728; 将 hexo 部署到 GitHub"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 将 hexo 部署到 GitHub</h3><p>将<code>hexo</code>和<code>GitHub</code>关联起来，将<code>hexo</code>生成的文章部署到<code>GitHub</code>上，打开站点配置文件 <code>_config.yml</code>, 修改如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-<p>这时候需要先安装<code>deploy-git</code>:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>然后：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  # 清除之前生成的东西</span><br><span class="line">hexo g  # 生成静态文章</span><br><span class="line">hexo deploy | hexo d # 部署文章</span><br></pre></td></tr></table></figure>
-<p><span class="emoji" alias="sunglasses" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">&#x1f60e;</span> 输入<code>username</code>和<code>password</code>后就可以访问<a href="http://voyageyoung.github.io/">个人博客网站</a></p>
-]]></content>
-      <categories>
-        <category>guide</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue-learn-6</title>
-    <url>/2021/01/24/vue-learn-6/</url>
-    <content><![CDATA[<h3 id="🌟-深入探讨组件"><a href="#🌟-深入探讨组件" class="headerlink" title="🌟 深入探讨组件"></a>🌟 深入探讨组件</h3><h4 id="⭐-局部注册初步"><a href="#⭐-局部注册初步" class="headerlink" title="⭐ 局部注册初步"></a>⭐ 局部注册初步</h4><blockquote>
-<p>前面探讨的皆是 <code>全局注册</code>, 接下来讨论 <code>局部注册</code>;</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 注册局部组件</span></span><br><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentC = &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">&#x27;component-a&#x27;</span>: ComponentA,</span><br><span class="line">    <span class="string">&#x27;component-b&#x27;</span>: ComponentB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>🐞 局部注册的组件在子组件中不可用！</p>
-<p>要想在 <code>ComponentB</code> 中使用 <code>ComponentA</code>:</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        <span class="string">&#x27;component-a&#x27;</span>: ComponentA</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="⭐-单向数据流"><a href="#⭐-单向数据流" class="headerlink" title="⭐ 单向数据流"></a>⭐ 单向数据流</h4><blockquote>
-<p>单向下行绑定: 父级 <code>prop</code> 的<strong>更新</strong>会向下流动到子组件, 但是反过来不行</p>
-</blockquote>
-<p>🌀 变更 <code>prop</code> 的常见情形:</p>
-<ul>
-<li>这个 <code>prop </code> 用来传递一个初始值; 这个子组件接下来希望将其作为一个本地的 <code>prop</code> 数据来使用:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;initialCounter&#x27;</span>],</span><br><span class="line">data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: <span class="built_in">this</span>.initialCounter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>这个 <code>prop</code> 以一种原始的值传入且需要进行转换:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;size&#x27;</span>],</span><br><span class="line">computed: &#123;</span><br><span class="line">  normalizedSize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.size.trim().toLowerCase()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="⭐-Prop-验证"><a href="#⭐-Prop-验证" class="headerlink" title="⭐ Prop 验证"></a>⭐ <code>Prop</code> 验证</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;my-component&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    <span class="comment">// null 和 undefined 会通过任何类型验证</span></span><br><span class="line">    propA: <span class="built_in">Number</span>,</span><br><span class="line">    <span class="comment">// 多个类型</span></span><br><span class="line">    propB: [<span class="built_in">String</span>, <span class="built_in">Number</span>],  </span><br><span class="line">    <span class="comment">// 必填</span></span><br><span class="line">    propC: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">    <span class="comment">// 带有默认值</span></span><br><span class="line">    propD: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="number">100</span>&#125;,</span><br><span class="line">    <span class="comment">// 对象或数组默认值必须从一个工厂函数获取</span></span><br><span class="line">    propE: &#123;<span class="attr">type</span>: <span class="built_in">Object</span>, <span class="attr">default</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;<span class="attr">message</span>: <span class="string">&#x27;hello&#x27;</span>&#125;</span><br><span class="line">    &#125;&#125;,</span><br><span class="line">    <span class="comment">// 自定义验证函数</span></span><br><span class="line">    propF: &#123;<span class="attr">validator</span>: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;success&#x27;</span>, <span class="string">&#x27;warning&#x27;</span>, <span class="string">&#x27;danger&#x27;</span>].indexOf(value) != -<span class="number">1</span></span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>当 <code>prop</code> 验证失败时, Vue 将会产生一个控制台的警告;</li>
-<li><code>type</code> 可以是 <code>String</code> <code>Number</code> <code>Boolean</code> <code>Array</code> <code>Object</code> <code>Date</code> <code>Function</code> <code>Symbol</code>;</li>
-<li><code>type</code> 也可以是自定义构造函数</li>
-</ul>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">firstName, lastName</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.firstName = firstName</span><br><span class="line">  <span class="built_in">this</span>.lastName = lastName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;blog-post&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    author: Person</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue-learn-1</title>
     <url>/2021/01/20/vue-learn-1/</url>
     <content><![CDATA[<h3 id="Vue-实例-x1f386"><a href="#Vue-实例-x1f386" class="headerlink" title="Vue 实例 &#x1f386;"></a>Vue 实例 <span class="emoji" alias="fireworks" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f386.png?v8">&#x1f386;</span></h3><blockquote>
@@ -128,6 +60,61 @@
 
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 搭建博客</title>
+    <url>/2021/01/19/hexo/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>第一篇博客！希望以后可能还会有……本文主要介绍了Hexo搭建博客的主要步骤以及相关问题，供回顾与参考 </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>   
+
+<blockquote>
+<p>搭建前提：安装 <code>node.js</code> 和 <code>hexo</code><br>可以使用 <code>node -v</code> 和 <code>hexo v</code> 查看是否安装成功</p>
+</blockquote>
+<h3 id="x2728-建立博客站点"><a href="#x2728-建立博客站点" class="headerlink" title="&#x2728; 建立博客站点"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 建立博客站点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init myblog    # 初始化 hexo</span><br><span class="line">cd myblog   # 进入 myblog 文件夹</span><br><span class="line">npm install # 下载相关的依赖包</span><br><span class="line">hexo generate | hexo g  # 生成静态页面或文件</span><br><span class="line">hexo server # start a  local server, at localhost:4000</span><br></pre></td></tr></table></figure>
+<h3 id="x2728-将-hexo-部署到-GitHub"><a href="#x2728-将-hexo-部署到-GitHub" class="headerlink" title="&#x2728; 将 hexo 部署到 GitHub"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 将 hexo 部署到 GitHub</h3><p>将<code>hexo</code>和<code>GitHub</code>关联起来，将<code>hexo</code>生成的文章部署到<code>GitHub</code>上，打开站点配置文件 <code>_config.yml</code>, 修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<p>这时候需要先安装<code>deploy-git</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  # 清除之前生成的东西</span><br><span class="line">hexo g  # 生成静态文章</span><br><span class="line">hexo deploy | hexo d # 部署文章</span><br></pre></td></tr></table></figure>
+<p><span class="emoji" alias="sunglasses" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">&#x1f60e;</span> 输入<code>username</code>和<code>password</code>后就可以访问<a href="http://voyageyoung.github.io/">个人博客网站</a></p>
+]]></content>
+      <categories>
+        <category>guide</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-learn-3</title>
+    <url>/2021/01/21/vue-learn-3/</url>
+    <content><![CDATA[<h3 id="💥-事件处理"><a href="#💥-事件处理" class="headerlink" title="💥 事件处理"></a>💥 事件处理</h3><h4 id="🌟-可以使用-v-on-指令监听-DOM-事件"><a href="#🌟-可以使用-v-on-指令监听-DOM-事件" class="headerlink" title="🌟 可以使用 v-on 指令监听 DOM 事件"></a>🌟 可以使用 <code>v-on</code> 指令监听 <code>DOM</code> 事件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;counter +&#x3D; 1&quot;&gt;Add 1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var example &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter: 0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="🌟-事件处理方法"><a href="#🌟-事件处理方法" class="headerlink" title="🌟 事件处理方法"></a>🌟 事件处理方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;addCounter&quot;&gt;Add 1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var example &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">      addCounter: function(event) &#123;</span><br><span class="line">          this.counter++;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="🌟-内联方法"><a href="#🌟-内联方法" class="headerlink" title="🌟 内联方法"></a>🌟 内联方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;add(1)&quot;&gt;Add 1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var example &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">      add: function(num) &#123;</span><br><span class="line">          this.counter++;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🐞 有时需要在内联语句中访问原始的 <code>DOM</code> 事件，可以使用特殊变量 <code>$event</code> 把它传入方法：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button v-on:click&#x3D;&quot;warn(&#39;Form cannot be submitted yet.&#39;, $event)&quot;&gt;</span><br><span class="line">  Submit</span><br><span class="line">&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="💥-事件修饰符"><a href="#💥-事件修饰符" class="headerlink" title="💥 事件修饰符"></a>💥 事件修饰符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 阻止单击事件继续传播 --&gt;</span><br><span class="line">&lt;a v-on:click.stop&#x3D;&quot;doThis&quot;&gt;&lt;&#x2F;a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 提交事件不再重载页面 --&gt;</span><br><span class="line">&lt;form v-on:submit.prevent&#x3D;&quot;onSubmit&quot;&gt;&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修饰符可以串联 --&gt;</span><br><span class="line">&lt;a v-on:click.stop.prevent&#x3D;&quot;doThat&quot;&gt;&lt;&#x2F;a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只有修饰符 --&gt;</span><br><span class="line">&lt;form v-on:submit.prevent&gt;&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;</span><br><span class="line">&lt;!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 --&gt;</span><br><span class="line">&lt;div v-on:click.capture&#x3D;&quot;doThis&quot;&gt;...&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;</span><br><span class="line">&lt;!-- 即事件不是从内部元素触发的 --&gt;</span><br><span class="line">&lt;div v-on:click.self&#x3D;&quot;doThat&quot;&gt;...&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 点击事件将只会触发一次 --&gt;</span><br><span class="line">&lt;a v-on:click.once&#x3D;&quot;doThis&quot;&gt;&lt;&#x2F;a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 --&gt;</span><br><span class="line">&lt;!-- 而不会等待 &#96;onScroll&#96; 完成  --&gt;</span><br><span class="line">&lt;!-- 这其中包含 &#96;event.preventDefault()&#96; 的情况 --&gt;</span><br><span class="line">&lt;div v-on:scroll.passive&#x3D;&quot;onScroll&quot;&gt;...&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="💥-按键修饰符"><a href="#💥-按键修饰符" class="headerlink" title="💥 按键修饰符"></a>💥 按键修饰符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 只有在 &#96;key&#96; 是 &#96;Enter&#96; 时调用 &#96;vm.submit()&#96; --&gt;</span><br><span class="line">&lt;input v-on:keyup.enter&#x3D;&quot;submit&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只会在 $event.key 等于 PageDown 时被调用--&gt;</span><br><span class="line">&lt;input v-on:keyup.page-down&#x3D;&quot;onPageDown&quot;&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🐞 后续可能会有所补充，具体情况再补充……</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>前端</category>
@@ -267,23 +254,36 @@
       </tags>
   </entry>
   <entry>
-    <title>vue-learn-3</title>
-    <url>/2021/01/21/vue-learn-3/</url>
-    <content><![CDATA[<h3 id="💥-事件处理"><a href="#💥-事件处理" class="headerlink" title="💥 事件处理"></a>💥 事件处理</h3><h4 id="🌟-可以使用-v-on-指令监听-DOM-事件"><a href="#🌟-可以使用-v-on-指令监听-DOM-事件" class="headerlink" title="🌟 可以使用 v-on 指令监听 DOM 事件"></a>🌟 可以使用 <code>v-on</code> 指令监听 <code>DOM</code> 事件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;counter +&#x3D; 1&quot;&gt;Add 1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var example &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter: 0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="🌟-事件处理方法"><a href="#🌟-事件处理方法" class="headerlink" title="🌟 事件处理方法"></a>🌟 事件处理方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;addCounter&quot;&gt;Add 1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var example &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">      addCounter: function(event) &#123;</span><br><span class="line">          this.counter++;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="🌟-内联方法"><a href="#🌟-内联方法" class="headerlink" title="🌟 内联方法"></a>🌟 内联方法</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;add(1)&quot;&gt;Add 1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var example &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">      add: function(num) &#123;</span><br><span class="line">          this.counter++;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>🐞 有时需要在内联语句中访问原始的 <code>DOM</code> 事件，可以使用特殊变量 <code>$event</code> 把它传入方法：</p>
+    <title>vue-learn-6</title>
+    <url>/2021/01/24/vue-learn-6/</url>
+    <content><![CDATA[<h3 id="🌟-深入探讨组件"><a href="#🌟-深入探讨组件" class="headerlink" title="🌟 深入探讨组件"></a>🌟 深入探讨组件</h3><h4 id="⭐-局部注册初步"><a href="#⭐-局部注册初步" class="headerlink" title="⭐ 局部注册初步"></a>⭐ 局部注册初步</h4><blockquote>
+<p>前面探讨的皆是 <code>全局注册</code>, 接下来讨论 <code>局部注册</code>;</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;button v-on:click&#x3D;&quot;warn(&#39;Form cannot be submitted yet.&#39;, $event)&quot;&gt;</span><br><span class="line">  Submit</span><br><span class="line">&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="💥-事件修饰符"><a href="#💥-事件修饰符" class="headerlink" title="💥 事件修饰符"></a>💥 事件修饰符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 阻止单击事件继续传播 --&gt;</span><br><span class="line">&lt;a v-on:click.stop&#x3D;&quot;doThis&quot;&gt;&lt;&#x2F;a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 提交事件不再重载页面 --&gt;</span><br><span class="line">&lt;form v-on:submit.prevent&#x3D;&quot;onSubmit&quot;&gt;&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修饰符可以串联 --&gt;</span><br><span class="line">&lt;a v-on:click.stop.prevent&#x3D;&quot;doThat&quot;&gt;&lt;&#x2F;a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只有修饰符 --&gt;</span><br><span class="line">&lt;form v-on:submit.prevent&gt;&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;</span><br><span class="line">&lt;!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 --&gt;</span><br><span class="line">&lt;div v-on:click.capture&#x3D;&quot;doThis&quot;&gt;...&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;</span><br><span class="line">&lt;!-- 即事件不是从内部元素触发的 --&gt;</span><br><span class="line">&lt;div v-on:click.self&#x3D;&quot;doThat&quot;&gt;...&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 点击事件将只会触发一次 --&gt;</span><br><span class="line">&lt;a v-on:click.once&#x3D;&quot;doThis&quot;&gt;&lt;&#x2F;a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 --&gt;</span><br><span class="line">&lt;!-- 而不会等待 &#96;onScroll&#96; 完成  --&gt;</span><br><span class="line">&lt;!-- 这其中包含 &#96;event.preventDefault()&#96; 的情况 --&gt;</span><br><span class="line">&lt;div v-on:scroll.passive&#x3D;&quot;onScroll&quot;&gt;...&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="💥-按键修饰符"><a href="#💥-按键修饰符" class="headerlink" title="💥 按键修饰符"></a>💥 按键修饰符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 只有在 &#96;key&#96; 是 &#96;Enter&#96; 时调用 &#96;vm.submit()&#96; --&gt;</span><br><span class="line">&lt;input v-on:keyup.enter&#x3D;&quot;submit&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只会在 $event.key 等于 PageDown 时被调用--&gt;</span><br><span class="line">&lt;input v-on:keyup.page-down&#x3D;&quot;onPageDown&quot;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 注册局部组件</span></span><br><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentC = &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">&#x27;component-a&#x27;</span>: ComponentA,</span><br><span class="line">    <span class="string">&#x27;component-b&#x27;</span>: ComponentB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>🐞 后续可能会有所补充，具体情况再补充……</p>
+<p>🐞 局部注册的组件在子组件中不可用！</p>
+<p>要想在 <code>ComponentB</code> 中使用 <code>ComponentA</code>:</p>
 </blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        <span class="string">&#x27;component-a&#x27;</span>: ComponentA</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="⭐-单向数据流"><a href="#⭐-单向数据流" class="headerlink" title="⭐ 单向数据流"></a>⭐ 单向数据流</h4><blockquote>
+<p>单向下行绑定: 父级 <code>prop</code> 的<strong>更新</strong>会向下流动到子组件, 但是反过来不行</p>
+</blockquote>
+<p>🌀 变更 <code>prop</code> 的常见情形:</p>
+<ul>
+<li>这个 <code>prop </code> 用来传递一个初始值; 这个子组件接下来希望将其作为一个本地的 <code>prop</code> 数据来使用:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;initialCounter&#x27;</span>],</span><br><span class="line">data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: <span class="built_in">this</span>.initialCounter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>这个 <code>prop</code> 以一种原始的值传入且需要进行转换:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;size&#x27;</span>],</span><br><span class="line">computed: &#123;</span><br><span class="line">  normalizedSize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.size.trim().toLowerCase()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="⭐-Prop-验证"><a href="#⭐-Prop-验证" class="headerlink" title="⭐ Prop 验证"></a>⭐ <code>Prop</code> 验证</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;my-component&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    <span class="comment">// null 和 undefined 会通过任何类型验证</span></span><br><span class="line">    propA: <span class="built_in">Number</span>,</span><br><span class="line">    <span class="comment">// 多个类型</span></span><br><span class="line">    propB: [<span class="built_in">String</span>, <span class="built_in">Number</span>],  </span><br><span class="line">    <span class="comment">// 必填</span></span><br><span class="line">    propC: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">    <span class="comment">// 带有默认值</span></span><br><span class="line">    propD: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="number">100</span>&#125;,</span><br><span class="line">    <span class="comment">// 对象或数组默认值必须从一个工厂函数获取</span></span><br><span class="line">    propE: &#123;<span class="attr">type</span>: <span class="built_in">Object</span>, <span class="attr">default</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;<span class="attr">message</span>: <span class="string">&#x27;hello&#x27;</span>&#125;</span><br><span class="line">    &#125;&#125;,</span><br><span class="line">    <span class="comment">// 自定义验证函数</span></span><br><span class="line">    propF: &#123;<span class="attr">validator</span>: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;success&#x27;</span>, <span class="string">&#x27;warning&#x27;</span>, <span class="string">&#x27;danger&#x27;</span>].indexOf(value) != -<span class="number">1</span></span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>当 <code>prop</code> 验证失败时, Vue 将会产生一个控制台的警告;</li>
+<li><code>type</code> 可以是 <code>String</code> <code>Number</code> <code>Boolean</code> <code>Array</code> <code>Object</code> <code>Date</code> <code>Function</code> <code>Symbol</code>;</li>
+<li><code>type</code> 也可以是自定义构造函数</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">firstName, lastName</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.firstName = firstName</span><br><span class="line">  <span class="built_in">this</span>.lastName = lastName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;blog-post&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    author: Person</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
 ]]></content>
       <categories>
         <category>前端</category>
@@ -339,7 +339,18 @@
 </blockquote>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; slotProps.user.firstName &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>⭐ 包含所有 <code>插槽 prop</code> 的对象命名为 <code>slotProps</code><br>⭐ 可以缩写为: <template v-slot="slotProps"><br>⭐ <code>v-slot</code> 可以缩写为 <code>#</code>, <strong>但是</strong>只有在其有参数才可以缩写, 像 <code>v-slot=&quot;user&quot;</code> 不能写成: <code>#=&quot;user&quot;</code><br>⭐ 默认插槽的缩写语法不可和具名插槽混用<br>⭐ 出现多个插槽, 且要使用这种语法, 就使用完整的基于 <code>&lt;template&gt;</code> 的语法, 像这样: </p>
+<ul>
+<li><p>包含所有 <code>插槽 prop</code> 的对象命名为 <code>slotProps</code></p>
+</li>
+<li><p>可以缩写为: <code>&lt;template v-slot=&quot;slotProps&quot;&gt;</code></p>
+</li>
+<li><p><code>v-slot</code> 可以缩写为 <code>#</code>, <strong>但是</strong>只有在其有参数才可以缩写, 像 <code>v-slot=&quot;user&quot;</code> 不能写成: <code>#=&quot;user&quot;</code></p>
+</li>
+<li><p>默认插槽的缩写语法不可和具名插槽混用</p>
+</li>
+<li><p>出现多个插槽, 且要使用这种语法, 就使用完整的基于 <code>&lt;template&gt;</code> 的语法, 像这样: </p>
+</li>
+</ul>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">current-user</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">&quot;slotProps&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; slotProps.user.firstName &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:other</span>=<span class="string">&quot;otherSlotProps&quot;</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">current-user</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
