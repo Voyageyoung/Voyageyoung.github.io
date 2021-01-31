@@ -196,6 +196,235 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://voyageyoung.github.io/2021/01/31/vue-learn-9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Li">
+      <meta itemprop="description" content="Forever young！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Voyageyoung">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/31/vue-learn-9/" class="post-title-link" itemprop="url">vue-learn-9</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-01-31 20:36:36 / 修改时间：20:56:34" itemprop="dateCreated datePublished" datetime="2021-01-31T20:36:36+08:00">2021-01-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>过滤器可以用在俩地方: <strong>双花括号插值</strong> 和 <strong><code>v-bind</code> 表达式</strong> </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+
+<blockquote>
+<p>过滤器应添加在 <code>JavaScript</code> 表达式的尾部, 由 <code>管道</code> 符号指示:</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在双花括号中 --&gt;</span></span><br><span class="line">&#123;&#123; message | capitalize&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 在 v-bind 中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">&#x27;rawId | fomatId&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在一个组件的 <code>选项</code> 中定义本地的过滤器: (以首字母大写为例)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">    capitalize: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">        value = value.toString()</span><br><span class="line">        <span class="keyword">return</span> value.charAt(<span class="number">0</span>)toUpperCase() + value.slice(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建 <code>Vue</code> 实例之前全局定义过滤器: (同样以首字母大写为例)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(<span class="string">&#x27;capitalize&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    value = value.toString()</span><br><span class="line">    <span class="keyword">return</span> value.charAt(<span class="number">0</span>).toUpperCase() + value.slice(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>🌀 过滤器的串联是如何使用的? </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; message | filterA | filterB&#125;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解释: <code>filterA</code> 被定义为接收单个参数的过滤器函数, 表达式 <code>message</code> 的值作为参数传入函数中; 同样的, 将 <code>filterA</code> 的值作为参数传递到 <code>filterB</code> 中</p>
+<blockquote>
+<p>当然也可以接收多个参数:</p>
+</blockquote>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; message | filterA(&#x27;agr1&#x27;, &#x27;arg2&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://voyageyoung.github.io/2021/01/26/vue-learn-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Li">
+      <meta itemprop="description" content="Forever young！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Voyageyoung">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/26/vue-learn-8/" class="post-title-link" itemprop="url">vue-learn-8</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-26 11:29:36" itemprop="dateCreated datePublished" datetime="2021-01-26T11:29:36+08:00">2021-01-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-31 20:20:55" itemprop="dateModified" datetime="2021-01-31T20:20:55+08:00">2021-01-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="x2600-处理边界情况"><a href="#x2600-处理边界情况" class="headerlink" title="&#x2600; 处理边界情况"></a><span class="emoji" alias="sunny" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png?v8">&#x2600;</span> 处理边界情况</h3><blockquote>
+<p>⭐ 访问根实例: <code>this.$root</code> </p>
+<blockquote>
+<p>所有子组件都可以将这个实例 <code>new Vue</code> 作为一个全局 store 来访问或使用:</p>
+</blockquote>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$root.certain-data;    <span class="comment">// 访问 data 中的值</span></span><br><span class="line"><span class="built_in">this</span>.$root.certain-data = certain-num;  <span class="comment">// 更改</span></span><br><span class="line"><span class="built_in">this</span>.$root.certain-method() <span class="comment">// 调用 method 中方法</span></span><br><span class="line"><span class="built_in">this</span>.$root.computed-num;    <span class="comment">//访问计算属性</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⭐ 访问父级组件实例: <code>this.$parent</code>  </p>
+<blockquote>
+<p>此处后续再叙述……</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>⭐ 访问子组件实例或子元素: <code>this.$refs</code></p>
+<blockquote>
+</blockquote>
+<p>这里通过 <code>ref</code> 这个 attribute 为子组件赋予一个 ID 引用;</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base-input</span> <span class="attr">ref</span>=<span class="string">&quot;usernameInput&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">base-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>现在可以使用 <code>this.$refs.usernameInput</code> 来访问 <code>&lt;base-input&gt;</code> 这个实例</p>
+<blockquote>
+</blockquote>
+<p>具体后续再进行补充……</p>
+</blockquote>
+<blockquote>
+<p>⭐ 依赖注入</p>
+<blockquote>
+</blockquote>
+<p>使用两个新的实例选项: <code>provide</code> 和 <code>inject</code></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">google-map</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">google-map-region</span> <span class="attr">v-bind:shape</span>=<span class="string">&quot;cityBoundaries&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">google-map-markers</span> <span class="attr">v-bind:places</span>=<span class="string">&quot;iceCreamShops&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">google-map-markers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">google-map-region</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">google-map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>provide</code> 选项允许指定想要提供给厚点组件的数据/方法, 如：<code>&lt;google-map&gt;</code> 内部的 <code>getMap</code> 方法:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">provide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        getMap: <span class="built_in">this</span>.getMap</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后在任何后代组件中, 可以使用 <code>inject</code> 选项来接收指定的我们想要添加在这个实例上的 <code>property</code>:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inject: [<span class="string">&#x27;getMap&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="x2600-进入-离开-amp-列表过渡"><a href="#x2600-进入-离开-amp-列表过渡" class="headerlink" title="&#x2600; 进入/离开 &amp; 列表过渡"></a><span class="emoji" alias="sunny" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png?v8">&#x2600;</span> 进入/离开 &amp; 列表过渡</h3><h4 id="🌟-单元素-组件的过渡"><a href="#🌟-单元素-组件的过渡" class="headerlink" title="🌟 单元素/组件的过渡"></a>🌟 单元素/组件的过渡</h4><p>[详细请参考]<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/transitions.html">(</a>)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;show = !show&quot;</span>&gt;</span></span><br><span class="line">    Toggle</span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">&quot;fade&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">&quot;show&quot;</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#demo&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    show: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fade-enter-active</span>, <span class="selector-class">.fade-leave-active</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: opacity .<span class="number">5s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.fade-enter</span>, <span class="selector-class">.fade-leave-to</span> <span class="comment">/* .fade-leave-active below version 2.1.8 */</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>自动嗅探目标元素是否应用 css 过渡或动画, 如果是, 在恰当时机添加/删除 css 类名;<blockquote>
+</blockquote>
+</li>
+<li>如果过渡组件提供了 JavaScript 钩子函数, 这些钩子函数将在恰当的时机被调用;<blockquote>
+</blockquote>
+</li>
+<li>如果没找到 JavaScript 钩子并且也没有检测到 css 过渡/动画, DOM 操作(插入/删除)在下一帧中立即执行;</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>在进入/离开的过渡中, 会有6个 class 切换:<br><code>v-entere</code>  <code>v-enter-active</code>  <code>v-enter-to</code>  <code>v-leave</code>  <code>v-leave-active</code>  <code>v-leave-to</code></p>
+</blockquote>
+<blockquote>
+<p>🐞 <code>v-</code> 是类名的默认前缀, 如果使用: <code>&lt;trantion name=&#39;my-transition&#39;&gt;</code> 则 <code>v-enter</code> 替换为 <code>my-transition-enter</code>  </p>
+</blockquote>
+<h4 id="🌟-CSS-的过渡"><a href="#🌟-CSS-的过渡" class="headerlink" title="🌟 CSS 的过渡"></a>🌟 <code>CSS</code> 的过渡</h4><h4 id="🌟-CSS-动画"><a href="#🌟-CSS-动画" class="headerlink" title="🌟 CSS 动画"></a>🌟 <code>CSS</code> 动画</h4><h4 id="🌟-显性的过渡持续时间"><a href="#🌟-显性的过渡持续时间" class="headerlink" title="🌟 显性的过渡持续时间"></a>🌟 显性的过渡持续时间</h4><blockquote>
+<p>可以用 <code>&lt;transition&gt;</code> 组件上的 <code>duration</code> prop 定制一个显性的过渡持续时间( ms 计):</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:duration</span>=<span class="string">&quot;1000&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 定制进入和移出的持续时间 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">:duration</span>=<span class="string">&quot;&#123; enter: 500, leave: 800 &#125;&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="🌟-JavaScript-钩子"><a href="#🌟-JavaScript-钩子" class="headerlink" title="🌟 JavaScript 钩子"></a>🌟 <code>JavaScript</code> 钩子</h4><h3 id="x2600-状态过渡"><a href="#x2600-状态过渡" class="headerlink" title="&#x2600; 状态过渡"></a><span class="emoji" alias="sunny" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png?v8">&#x2600;</span> 状态过渡</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://voyageyoung.github.io/2021/01/25/vue-learn-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1095,7 +1324,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
