@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>深入揭秘 Vue</title>
+    <url>/2021/02/03/deep-explore-Vue/</url>
+    <content><![CDATA[<h2 id="💥-准备工作"><a href="#💥-准备工作" class="headerlink" title="💥 准备工作"></a>💥 准备工作</h2><h3 id="🌟-Flow"><a href="#🌟-Flow" class="headerlink" title="🌟 Flow"></a>🌟 <code>Flow</code></h3><p>工作方式: </p>
+<ol>
+<li>类型推断: 通过变量的使用上下文推断变量类型, 根据推断来检查类型;<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">split</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">split(<span class="number">11</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🛠 报错 —— 期待参数: 字符串;  输入: 数字</p>
+</blockquote>
+</li>
+<li>类型注释: 事先注释好期待的类型, <code>Flow</code> 会基于这些注释来判断;<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x: number, y: number</span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="string">&#x27;Hello&#x27;</span>, <span class="number">11</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🛠 其实注释 <code>: number</code> 也没多大问题, 因为字符串也可以使用 <code>+</code> , 此处为了严谨, 还有其他一些例子:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">var</span> arr: <span class="built_in">Array</span>&lt;number&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr.push(<span class="string">&#x27;Hello&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 类和对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;</span><br><span class="line">  x: string;           </span><br><span class="line">  y: string | number; </span><br><span class="line">  z: boolean;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">x: string, y: string | number</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.x = x</span><br><span class="line">    <span class="built_in">this</span>.y = y</span><br><span class="line">    <span class="built_in">this</span>.z = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar: Bar = <span class="keyword">new</span> Bar(<span class="string">&#x27;hello&#x27;</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj: &#123; <span class="attr">a</span>: string, <span class="attr">b</span>: number, <span class="attr">c</span>: <span class="built_in">Array</span>&lt;string&gt;, d: Bar &#125; = &#123;</span><br><span class="line">  a: <span class="string">&#x27;hello&#x27;</span>,</span><br><span class="line">  b: <span class="number">11</span>,</span><br><span class="line">  c: [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>],</span><br><span class="line">  d: <span class="keyword">new</span> Bar(<span class="string">&#x27;hello&#x27;</span>, <span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Null</span></span><br><span class="line"><span class="keyword">var</span> foo: ?string = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<h3 id="🌟-Vue-js-源码目录设计"><a href="#🌟-Vue-js-源码目录设计" class="headerlink" title="🌟 Vue.js 源码目录设计"></a>🌟 <code>Vue.js</code> 源码目录设计</h3></li>
+<li><code>compiler</code>: 编译相关</li>
+<li><code>core</code>: 核心代码</li>
+<li><code>platforms</code>: 不同平台的支持</li>
+<li><code>server</code>: 服务端渲染</li>
+<li><code>sfc</code>: .vue 文件解析</li>
+<li><code>shared</code>: 共享代码</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端布局 - 之“查缺补漏”</title>
     <url>/2021/02/10/findOut-flaws-make-Up/</url>
-    <content><![CDATA[<p>&lt;% cq %&gt;整理一些前端中遗漏的问题&lt;% endcq %&gt;</p>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>整理一些前端中遗漏的问题</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+
 <h4 id="⭐-Javascript-对象原型"><a href="#⭐-Javascript-对象原型" class="headerlink" title="⭐ Javascript 对象原型"></a>⭐ <code>Javascript</code> 对象原型</h4><ol>
 <li>理解对象的原型</li>
 <li>理解构造函数的 <code>prototype</code> 属性</li>
@@ -242,115 +281,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo 搭建博客</title>
-    <url>/2021/01/19/hexo/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>第一篇博客！希望以后可能还会有……本文主要介绍了Hexo搭建博客的主要步骤以及相关问题，供回顾与参考 </p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>   
-
-<blockquote>
-<p>搭建前提：安装 <code>node.js</code> 和 <code>hexo</code><br>可以使用 <code>node -v</code> 和 <code>hexo v</code> 查看是否安装成功</p>
-</blockquote>
-<h3 id="x2728-建立博客站点"><a href="#x2728-建立博客站点" class="headerlink" title="&#x2728; 建立博客站点"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 建立博客站点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init myblog    # 初始化 hexo</span><br><span class="line">cd myblog   # 进入 myblog 文件夹</span><br><span class="line">npm install # 下载相关的依赖包</span><br><span class="line">hexo generate | hexo g  # 生成静态页面或文件</span><br><span class="line">hexo server # start a  local server, at localhost:4000</span><br></pre></td></tr></table></figure>
-<h3 id="x2728-将-hexo-部署到-GitHub"><a href="#x2728-将-hexo-部署到-GitHub" class="headerlink" title="&#x2728; 将 hexo 部署到 GitHub"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 将 hexo 部署到 GitHub</h3><p>将<code>hexo</code>和<code>GitHub</code>关联起来，将<code>hexo</code>生成的文章部署到<code>GitHub</code>上，打开站点配置文件 <code>_config.yml</code>, 修改如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-<p>这时候需要先安装<code>deploy-git</code>:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>然后：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  # 清除之前生成的东西</span><br><span class="line">hexo g  # 生成静态文章</span><br><span class="line">hexo deploy | hexo d # 部署文章</span><br></pre></td></tr></table></figure>
-<p><span class="emoji" alias="sunglasses" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">&#x1f60e;</span> 输入<code>username</code>和<code>password</code>后就可以访问<a href="http://voyageyoung.github.io/">个人博客网站</a></p>
-]]></content>
-      <categories>
-        <category>guide</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深入 - Vue 之数据绑定</title>
-    <url>/2021/01/21/vue-learn-2/</url>
-    <content><![CDATA[<h3 id="Class-与-Style-绑定"><a href="#Class-与-Style-绑定" class="headerlink" title="Class 与 Style 绑定"></a>Class 与 Style 绑定</h3><h4 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  class&#x3D;&quot;static&quot;</span><br><span class="line">  v-bind:class&#x3D;&quot;&#123; active: isActive, &#39;text-danger&#39;: hasError &#125;&quot;</span><br><span class="line">&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  isActive: true,</span><br><span class="line">  hasError: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>active</code> 这个 <code>class</code> 是否存在取决于数据 property <code>isActive</code> 的值<br>上述渲染结果为：<br><code>&lt;div class=&quot;static active&quot;&gt;&lt;/div&gt;</code><br>上述的等价表述：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div v-bind:class&#x3D;&quot;classObject&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line">  classObject: &#123;</span><br><span class="line">    active: true,</span><br><span class="line">    &#39;text-danger&#39;: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="数组语法-x1f44d"><a href="#数组语法-x1f44d" class="headerlink" title="数组语法 &#x1f44d;"></a>数组语法 <span class="emoji" alias="thumbsup" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png?v8">&#x1f44d;</span></h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;[activeClass, errorClass]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeClass: <span class="string">&#x27;active&#x27;</span>,</span><br><span class="line">  errorClass: <span class="string">&#x27;text-danger&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>渲染为：<code>&lt;div class=&quot;active text-danger&quot;&gt;&lt;/div&gt;</code></p>
-<h4 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h4><blockquote>
-<p>CSS property 名可以用驼峰式或短横线分隔来命名  </p>
-</blockquote>
-<p><span class="emoji" alias="one" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0031-20e3.png?v8">&#x0031;&#xfe0f;&#x20e3;</span>  </p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;&#123; color: activeColor, fontSize: fontSize + &#x27;px&#x27; &#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeColor: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">  fontSize: <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><span class="emoji" alias="two" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0032-20e3.png?v8">&#x0032;&#xfe0f;&#x20e3;</span> (更清晰)</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;styleObject&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  styleObject: &#123;</span><br><span class="line">    color: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">    fontSize: <span class="string">&#x27;13px&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><h4 id="v-if-v-else-if-v-else"><a href="#v-if-v-else-if-v-else" class="headerlink" title="v-if | v-else-if | v-else"></a>v-if | v-else-if | v-else</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">&quot;type === &#x27;A&#x27;&quot;</span>&gt;</span></span><br><span class="line">  A</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;B&#x27;&quot;</span>&gt;</span></span><br><span class="line">  B</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;C&#x27;&quot;</span>&gt;</span></span><br><span class="line">  C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  Not A/B/C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="template-标签的使用"><a href="#template-标签的使用" class="headerlink" title="template 标签的使用"></a>template 标签的使用</h4><blockquote>
-<p>使用 <code>&lt;template&gt;</code> 当做不可见的包裹元素，并在上面使用 <code>v-if</code> 。最终的渲染结果不包含 <code>&lt;template&gt;</code> 元素  </p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;ok&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="key-管理可复用的元素"><a href="#key-管理可复用的元素" class="headerlink" title="key 管理可复用的元素"></a>key 管理可复用的元素</h4><blockquote>
-<p><code>key</code> 保证在每次切换时，输入框都将重新渲染，如果没有 <code>key</code>, 输入的内容将在切换时保留</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;loginType === &#x27;username&#x27;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter your username&quot;</span> <span class="attr">key</span>=<span class="string">&quot;username-input&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter your email address&quot;</span> <span class="attr">key</span>=<span class="string">&quot;email-input&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h3><h4 id="v-for-使用"><a href="#v-for-使用" class="headerlink" title="v-for 使用"></a>v-for 使用</h4><h5 id="x0031-xfe0f-x20e3-数组中使用"><a href="#x0031-xfe0f-x20e3-数组中使用" class="headerlink" title="&#x0031;&#xfe0f;&#x20e3; 数组中使用"></a><span class="emoji" alias="one" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0031-20e3.png?v8">&#x0031;&#xfe0f;&#x20e3;</span> 数组中使用</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;li v-for&#x3D;&quot;item in items&quot; :key&#x3D;&quot;item.message&quot;&gt;</span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line"></span><br><span class="line">&lt;li v-for&#x3D;&quot;(item, index) in items&quot;&gt;</span><br><span class="line">    &#123;&#123; parentMessage &#125;&#125; - &#123;&#123; index &#125;&#125; - &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="x0032-xfe0f-x20e3-对象中使用"><a href="#x0032-xfe0f-x20e3-对象中使用" class="headerlink" title="&#x0032;&#xfe0f;&#x20e3; 对象中使用"></a><span class="emoji" alias="two" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0032-20e3.png?v8">&#x0032;&#xfe0f;&#x20e3;</span> 对象中使用</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul id&#x3D;&quot;v-for-object&quot; class&#x3D;&quot;demo&quot;&gt;</span><br><span class="line">  &lt;li v-for&#x3D;&quot;value in object&quot;&gt;</span><br><span class="line">    &#123;&#123; value &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">    el: &#39;#v-for-ovject&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">        object: &#123;</span><br><span class="line">            title: &#39;How to do lists in Vue&#39;,</span><br><span class="line">            author: &#39;Jane Doe&#39;,</span><br><span class="line">            publishedAt: &#39;2021-01-21&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>渲染结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">How to do lists in Vue</span><br><span class="line">Jane Doe</span><br><span class="line">2021-01-21</span><br></pre></td></tr></table></figure>
-<h3 id="数组更新"><a href="#数组更新" class="headerlink" title="数组更新"></a>数组更新</h3><h4 id="替换数组-x1f525"><a href="#替换数组-x1f525" class="headerlink" title="替换数组 &#x1f525;"></a>替换数组 <span class="emoji" alias="fire" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f525.png?v8">&#x1f525;</span></h4><blockquote>
-<p>不会变更原始数组，总是返回新数组<br>filter()、concat()、slice()  </p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-for</span>=<span class="string">&quot;set in sets&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;n in even(set)&quot;</span>&gt;</span>&#123;&#123; n &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  sets: [[ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]]</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  even: <span class="function"><span class="keyword">function</span> (<span class="params">numbers</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深入揭秘 Vue</title>
-    <url>/2021/02/03/deep-explore-Vue/</url>
-    <content><![CDATA[<h2 id="💥-准备工作"><a href="#💥-准备工作" class="headerlink" title="💥 准备工作"></a>💥 准备工作</h2><h3 id="🌟-Flow"><a href="#🌟-Flow" class="headerlink" title="🌟 Flow"></a>🌟 <code>Flow</code></h3><p>工作方式: </p>
-<ol>
-<li>类型推断: 通过变量的使用上下文推断变量类型, 根据推断来检查类型;<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">split</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">split(<span class="number">11</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>🛠 报错 —— 期待参数: 字符串;  输入: 数字</p>
-</blockquote>
-</li>
-<li>类型注释: 事先注释好期待的类型, <code>Flow</code> 会基于这些注释来判断;<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x: number, y: number</span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="string">&#x27;Hello&#x27;</span>, <span class="number">11</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>🛠 其实注释 <code>: number</code> 也没多大问题, 因为字符串也可以使用 <code>+</code> , 此处为了严谨, 还有其他一些例子:</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">var</span> arr: <span class="built_in">Array</span>&lt;number&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr.push(<span class="string">&#x27;Hello&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 类和对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;</span><br><span class="line">  x: string;           </span><br><span class="line">  y: string | number; </span><br><span class="line">  z: boolean;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">x: string, y: string | number</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.x = x</span><br><span class="line">    <span class="built_in">this</span>.y = y</span><br><span class="line">    <span class="built_in">this</span>.z = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar: Bar = <span class="keyword">new</span> Bar(<span class="string">&#x27;hello&#x27;</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj: &#123; <span class="attr">a</span>: string, <span class="attr">b</span>: number, <span class="attr">c</span>: <span class="built_in">Array</span>&lt;string&gt;, d: Bar &#125; = &#123;</span><br><span class="line">  a: <span class="string">&#x27;hello&#x27;</span>,</span><br><span class="line">  b: <span class="number">11</span>,</span><br><span class="line">  c: [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>],</span><br><span class="line">  d: <span class="keyword">new</span> Bar(<span class="string">&#x27;hello&#x27;</span>, <span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Null</span></span><br><span class="line"><span class="keyword">var</span> foo: ?string = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
-<h3 id="🌟-Vue-js-源码目录设计"><a href="#🌟-Vue-js-源码目录设计" class="headerlink" title="🌟 Vue.js 源码目录设计"></a>🌟 <code>Vue.js</code> 源码目录设计</h3></li>
-<li><code>compiler</code>: 编译相关</li>
-<li><code>core</code>: 核心代码</li>
-<li><code>platforms</code>: 不同平台的支持</li>
-<li><code>server</code>: 服务端渲染</li>
-<li><code>sfc</code>: .vue 文件解析</li>
-<li><code>shared</code>: 共享代码</li>
-</ol>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>初识 Vue</title>
     <url>/2021/01/20/vue-learn-1/</url>
     <content><![CDATA[<h3 id="Vue-实例-x1f386"><a href="#Vue-实例-x1f386" class="headerlink" title="Vue 实例 &#x1f386;"></a>Vue 实例 <span class="emoji" alias="fireworks" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f386.png?v8">&#x1f386;</span></h3><blockquote>
@@ -419,6 +349,53 @@
       </tags>
   </entry>
   <entry>
+    <title>深入 - Vue 之数据绑定</title>
+    <url>/2021/01/21/vue-learn-2/</url>
+    <content><![CDATA[<h3 id="Class-与-Style-绑定"><a href="#Class-与-Style-绑定" class="headerlink" title="Class 与 Style 绑定"></a>Class 与 Style 绑定</h3><h4 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div</span><br><span class="line">  class&#x3D;&quot;static&quot;</span><br><span class="line">  v-bind:class&#x3D;&quot;&#123; active: isActive, &#39;text-danger&#39;: hasError &#125;&quot;</span><br><span class="line">&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  isActive: true,</span><br><span class="line">  hasError: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>active</code> 这个 <code>class</code> 是否存在取决于数据 property <code>isActive</code> 的值<br>上述渲染结果为：<br><code>&lt;div class=&quot;static active&quot;&gt;&lt;/div&gt;</code><br>上述的等价表述：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div v-bind:class&#x3D;&quot;classObject&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line">  classObject: &#123;</span><br><span class="line">    active: true,</span><br><span class="line">    &#39;text-danger&#39;: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="数组语法-x1f44d"><a href="#数组语法-x1f44d" class="headerlink" title="数组语法 &#x1f44d;"></a>数组语法 <span class="emoji" alias="thumbsup" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png?v8">&#x1f44d;</span></h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;[activeClass, errorClass]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeClass: <span class="string">&#x27;active&#x27;</span>,</span><br><span class="line">  errorClass: <span class="string">&#x27;text-danger&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>渲染为：<code>&lt;div class=&quot;active text-danger&quot;&gt;&lt;/div&gt;</code></p>
+<h4 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h4><blockquote>
+<p>CSS property 名可以用驼峰式或短横线分隔来命名  </p>
+</blockquote>
+<p><span class="emoji" alias="one" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0031-20e3.png?v8">&#x0031;&#xfe0f;&#x20e3;</span>  </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;&#123; color: activeColor, fontSize: fontSize + &#x27;px&#x27; &#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  activeColor: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">  fontSize: <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><span class="emoji" alias="two" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0032-20e3.png?v8">&#x0032;&#xfe0f;&#x20e3;</span> (更清晰)</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;styleObject&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  styleObject: &#123;</span><br><span class="line">    color: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">    fontSize: <span class="string">&#x27;13px&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><h4 id="v-if-v-else-if-v-else"><a href="#v-if-v-else-if-v-else" class="headerlink" title="v-if | v-else-if | v-else"></a>v-if | v-else-if | v-else</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">&quot;type === &#x27;A&#x27;&quot;</span>&gt;</span></span><br><span class="line">  A</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;B&#x27;&quot;</span>&gt;</span></span><br><span class="line">  B</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;C&#x27;&quot;</span>&gt;</span></span><br><span class="line">  C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  Not A/B/C</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="template-标签的使用"><a href="#template-标签的使用" class="headerlink" title="template 标签的使用"></a>template 标签的使用</h4><blockquote>
+<p>使用 <code>&lt;template&gt;</code> 当做不可见的包裹元素，并在上面使用 <code>v-if</code> 。最终的渲染结果不包含 <code>&lt;template&gt;</code> 元素  </p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;ok&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="key-管理可复用的元素"><a href="#key-管理可复用的元素" class="headerlink" title="key 管理可复用的元素"></a>key 管理可复用的元素</h4><blockquote>
+<p><code>key</code> 保证在每次切换时，输入框都将重新渲染，如果没有 <code>key</code>, 输入的内容将在切换时保留</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;loginType === &#x27;username&#x27;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter your username&quot;</span> <span class="attr">key</span>=<span class="string">&quot;username-input&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter your email address&quot;</span> <span class="attr">key</span>=<span class="string">&quot;email-input&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h3><h4 id="v-for-使用"><a href="#v-for-使用" class="headerlink" title="v-for 使用"></a>v-for 使用</h4><h5 id="x0031-xfe0f-x20e3-数组中使用"><a href="#x0031-xfe0f-x20e3-数组中使用" class="headerlink" title="&#x0031;&#xfe0f;&#x20e3; 数组中使用"></a><span class="emoji" alias="one" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0031-20e3.png?v8">&#x0031;&#xfe0f;&#x20e3;</span> 数组中使用</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;li v-for&#x3D;&quot;item in items&quot; :key&#x3D;&quot;item.message&quot;&gt;</span><br><span class="line">    &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line"></span><br><span class="line">&lt;li v-for&#x3D;&quot;(item, index) in items&quot;&gt;</span><br><span class="line">    &#123;&#123; parentMessage &#125;&#125; - &#123;&#123; index &#125;&#125; - &#123;&#123; item.message &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="x0032-xfe0f-x20e3-对象中使用"><a href="#x0032-xfe0f-x20e3-对象中使用" class="headerlink" title="&#x0032;&#xfe0f;&#x20e3; 对象中使用"></a><span class="emoji" alias="two" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/0032-20e3.png?v8">&#x0032;&#xfe0f;&#x20e3;</span> 对象中使用</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul id&#x3D;&quot;v-for-object&quot; class&#x3D;&quot;demo&quot;&gt;</span><br><span class="line">  &lt;li v-for&#x3D;&quot;value in object&quot;&gt;</span><br><span class="line">    &#123;&#123; value &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">    el: &#39;#v-for-ovject&#39;,</span><br><span class="line">    data: &#123;</span><br><span class="line">        object: &#123;</span><br><span class="line">            title: &#39;How to do lists in Vue&#39;,</span><br><span class="line">            author: &#39;Jane Doe&#39;,</span><br><span class="line">            publishedAt: &#39;2021-01-21&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>渲染结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">How to do lists in Vue</span><br><span class="line">Jane Doe</span><br><span class="line">2021-01-21</span><br></pre></td></tr></table></figure>
+<h3 id="数组更新"><a href="#数组更新" class="headerlink" title="数组更新"></a>数组更新</h3><h4 id="替换数组-x1f525"><a href="#替换数组-x1f525" class="headerlink" title="替换数组 &#x1f525;"></a>替换数组 <span class="emoji" alias="fire" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f525.png?v8">&#x1f525;</span></h4><blockquote>
+<p>不会变更原始数组，总是返回新数组<br>filter()、concat()、slice()  </p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-for</span>=<span class="string">&quot;set in sets&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;n in even(set)&quot;</span>&gt;</span>&#123;&#123; n &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  sets: [[ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]]</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  even: <span class="function"><span class="keyword">function</span> (<span class="params">numbers</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numbers.filter(<span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> number % <span class="number">2</span> === <span class="number">0</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深入 - Vue 之事件处理</title>
     <url>/2021/01/21/vue-learn-3/</url>
     <content><![CDATA[<h3 id="💥-事件处理"><a href="#💥-事件处理" class="headerlink" title="💥 事件处理"></a>💥 事件处理</h3><h4 id="🌟-可以使用-v-on-指令监听-DOM-事件"><a href="#🌟-可以使用-v-on-指令监听-DOM-事件" class="headerlink" title="🌟 可以使用 v-on 指令监听 DOM 事件"></a>🌟 可以使用 <code>v-on</code> 指令监听 <code>DOM</code> 事件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;</span><br><span class="line">  &lt;button v-on:click&#x3D;&quot;counter +&#x3D; 1&quot;&gt;Add 1&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; times.&lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
@@ -442,6 +419,35 @@
       </categories>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 搭建博客</title>
+    <url>/2021/01/19/hexo/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>第一篇博客！希望以后可能还会有……本文主要介绍了Hexo搭建博客的主要步骤以及相关问题，供回顾与参考 </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>   
+
+<blockquote>
+<p>搭建前提：安装 <code>node.js</code> 和 <code>hexo</code><br>可以使用 <code>node -v</code> 和 <code>hexo v</code> 查看是否安装成功</p>
+</blockquote>
+<h3 id="x2728-建立博客站点"><a href="#x2728-建立博客站点" class="headerlink" title="&#x2728; 建立博客站点"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 建立博客站点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init myblog    # 初始化 hexo</span><br><span class="line">cd myblog   # 进入 myblog 文件夹</span><br><span class="line">npm install # 下载相关的依赖包</span><br><span class="line">hexo generate | hexo g  # 生成静态页面或文件</span><br><span class="line">hexo server # start a  local server, at localhost:4000</span><br></pre></td></tr></table></figure>
+<h3 id="x2728-将-hexo-部署到-GitHub"><a href="#x2728-将-hexo-部署到-GitHub" class="headerlink" title="&#x2728; 将 hexo 部署到 GitHub"></a><span class="emoji" alias="sparkles" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png?v8">&#x2728;</span> 将 hexo 部署到 GitHub</h3><p>将<code>hexo</code>和<code>GitHub</code>关联起来，将<code>hexo</code>生成的文章部署到<code>GitHub</code>上，打开站点配置文件 <code>_config.yml</code>, 修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<p>这时候需要先安装<code>deploy-git</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  # 清除之前生成的东西</span><br><span class="line">hexo g  # 生成静态文章</span><br><span class="line">hexo deploy | hexo d # 部署文章</span><br></pre></td></tr></table></figure>
+<p><span class="emoji" alias="sunglasses" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">&#x1f60e;</span> 输入<code>username</code>和<code>password</code>后就可以访问<a href="http://voyageyoung.github.io/">个人博客网站</a></p>
+]]></content>
+      <categories>
+        <category>guide</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -523,86 +529,6 @@
 </blockquote>
 <p>其实上述的 <code>v-model</code> 等价于:  </p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&lt;custom-input</span><br><span class="line">  v-bind:value=&quot;searchText&quot;</span><br><span class="line">  v-on:input=&quot;searchText = $event&quot;</span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深入 - Vue 之过滤器</title>
-    <url>/2021/01/31/vue-learn-9/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>过滤器可以用在俩地方: <strong>双花括号插值</strong> 和 <strong><code>v-bind</code> 表达式</strong> </p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-
-<blockquote>
-<p>过滤器应添加在 <code>JavaScript</code> 表达式的尾部, 由 <code>管道</code> 符号指示:</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在双花括号中 --&gt;</span></span><br><span class="line">&#123;&#123; message | capitalize&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 在 v-bind 中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">&#x27;rawId | fomatId&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在一个组件的 <code>选项</code> 中定义本地的过滤器: (以首字母大写为例)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">    capitalize: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">        value = value.toString()</span><br><span class="line">        <span class="keyword">return</span> value.charAt(<span class="number">0</span>)toUpperCase() + value.slice(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>创建 <code>Vue</code> 实例之前全局定义过滤器: (同样以首字母大写为例)</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.filter(<span class="string">&#x27;capitalize&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    value = value.toString()</span><br><span class="line">    <span class="keyword">return</span> value.charAt(<span class="number">0</span>).toUpperCase() + value.slice(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>🌀 过滤器的串联是如何使用的? </p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA | filterB&#125;&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>解释: <code>filterA</code> 被定义为接收单个参数的过滤器函数, 表达式 <code>message</code> 的值作为参数传入函数中; 同样的, 将 <code>filterA</code> 的值作为参数传递到 <code>filterB</code> 中</p>
-<blockquote>
-<p>当然也可以接收多个参数:</p>
-</blockquote>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA(&#x27;agr1&#x27;, &#x27;arg2&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深入 - Vue 之组件注册</title>
-    <url>/2021/01/24/vue-learn-6/</url>
-    <content><![CDATA[<h3 id="🌟-深入探讨组件"><a href="#🌟-深入探讨组件" class="headerlink" title="🌟 深入探讨组件"></a>🌟 深入探讨组件</h3><h4 id="⭐-局部注册初步"><a href="#⭐-局部注册初步" class="headerlink" title="⭐ 局部注册初步"></a>⭐ 局部注册初步</h4><blockquote>
-<p>前面探讨的皆是 <code>全局注册</code>, 接下来讨论 <code>局部注册</code>;</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 注册局部组件</span></span><br><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentC = &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">&#x27;component-a&#x27;</span>: ComponentA,</span><br><span class="line">    <span class="string">&#x27;component-b&#x27;</span>: ComponentB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>🐞 局部注册的组件在子组件中不可用！</p>
-<p>要想在 <code>ComponentB</code> 中使用 <code>ComponentA</code>:</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        <span class="string">&#x27;component-a&#x27;</span>: ComponentA</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="⭐-单向数据流"><a href="#⭐-单向数据流" class="headerlink" title="⭐ 单向数据流"></a>⭐ 单向数据流</h4><blockquote>
-<p>单向下行绑定: 父级 <code>prop</code> 的<strong>更新</strong>会向下流动到子组件, 但是反过来不行</p>
-</blockquote>
-<p>🌀 变更 <code>prop</code> 的常见情形:</p>
-<ul>
-<li>这个 <code>prop </code> 用来传递一个初始值; 这个子组件接下来希望将其作为一个本地的 <code>prop</code> 数据来使用:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;initialCounter&#x27;</span>],</span><br><span class="line">data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: <span class="built_in">this</span>.initialCounter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>这个 <code>prop</code> 以一种原始的值传入且需要进行转换:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;size&#x27;</span>],</span><br><span class="line">computed: &#123;</span><br><span class="line">  normalizedSize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.size.trim().toLowerCase()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="⭐-Prop-验证"><a href="#⭐-Prop-验证" class="headerlink" title="⭐ Prop 验证"></a>⭐ <code>Prop</code> 验证</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;my-component&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    <span class="comment">// null 和 undefined 会通过任何类型验证</span></span><br><span class="line">    propA: <span class="built_in">Number</span>,</span><br><span class="line">    <span class="comment">// 多个类型</span></span><br><span class="line">    propB: [<span class="built_in">String</span>, <span class="built_in">Number</span>],  </span><br><span class="line">    <span class="comment">// 必填</span></span><br><span class="line">    propC: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">    <span class="comment">// 带有默认值</span></span><br><span class="line">    propD: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="number">100</span>&#125;,</span><br><span class="line">    <span class="comment">// 对象或数组默认值必须从一个工厂函数获取</span></span><br><span class="line">    propE: &#123;<span class="attr">type</span>: <span class="built_in">Object</span>, <span class="attr">default</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;<span class="attr">message</span>: <span class="string">&#x27;hello&#x27;</span>&#125;</span><br><span class="line">    &#125;&#125;,</span><br><span class="line">    <span class="comment">// 自定义验证函数</span></span><br><span class="line">    propF: &#123;<span class="attr">validator</span>: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;success&#x27;</span>, <span class="string">&#x27;warning&#x27;</span>, <span class="string">&#x27;danger&#x27;</span>].indexOf(value) != -<span class="number">1</span></span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>当 <code>prop</code> 验证失败时, Vue 将会产生一个控制台的警告;</li>
-<li><code>type</code> 可以是 <code>String</code> <code>Number</code> <code>Boolean</code> <code>Array</code> <code>Object</code> <code>Date</code> <code>Function</code> <code>Symbol</code>;</li>
-<li><code>type</code> 也可以是自定义构造函数</li>
-</ul>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">firstName, lastName</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.firstName = firstName</span><br><span class="line">  <span class="built_in">this</span>.lastName = lastName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;blog-post&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    author: Person</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
       <tags>
         <tag>vue</tag>
       </tags>
@@ -757,6 +683,86 @@
       <categories>
         <category>前端</category>
       </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深入 - Vue 之组件注册</title>
+    <url>/2021/01/24/vue-learn-6/</url>
+    <content><![CDATA[<h3 id="🌟-深入探讨组件"><a href="#🌟-深入探讨组件" class="headerlink" title="🌟 深入探讨组件"></a>🌟 深入探讨组件</h3><h4 id="⭐-局部注册初步"><a href="#⭐-局部注册初步" class="headerlink" title="⭐ 局部注册初步"></a>⭐ 局部注册初步</h4><blockquote>
+<p>前面探讨的皆是 <code>全局注册</code>, 接下来讨论 <code>局部注册</code>;</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 注册局部组件</span></span><br><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentC = &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">&#x27;component-a&#x27;</span>: ComponentA,</span><br><span class="line">    <span class="string">&#x27;component-b&#x27;</span>: ComponentB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🐞 局部注册的组件在子组件中不可用！</p>
+<p>要想在 <code>ComponentB</code> 中使用 <code>ComponentA</code>:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        <span class="string">&#x27;component-a&#x27;</span>: ComponentA</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="⭐-单向数据流"><a href="#⭐-单向数据流" class="headerlink" title="⭐ 单向数据流"></a>⭐ 单向数据流</h4><blockquote>
+<p>单向下行绑定: 父级 <code>prop</code> 的<strong>更新</strong>会向下流动到子组件, 但是反过来不行</p>
+</blockquote>
+<p>🌀 变更 <code>prop</code> 的常见情形:</p>
+<ul>
+<li>这个 <code>prop </code> 用来传递一个初始值; 这个子组件接下来希望将其作为一个本地的 <code>prop</code> 数据来使用:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;initialCounter&#x27;</span>],</span><br><span class="line">data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: <span class="built_in">this</span>.initialCounter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>这个 <code>prop</code> 以一种原始的值传入且需要进行转换:<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">props: [<span class="string">&#x27;size&#x27;</span>],</span><br><span class="line">computed: &#123;</span><br><span class="line">  normalizedSize: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.size.trim().toLowerCase()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="⭐-Prop-验证"><a href="#⭐-Prop-验证" class="headerlink" title="⭐ Prop 验证"></a>⭐ <code>Prop</code> 验证</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;my-component&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    <span class="comment">// null 和 undefined 会通过任何类型验证</span></span><br><span class="line">    propA: <span class="built_in">Number</span>,</span><br><span class="line">    <span class="comment">// 多个类型</span></span><br><span class="line">    propB: [<span class="built_in">String</span>, <span class="built_in">Number</span>],  </span><br><span class="line">    <span class="comment">// 必填</span></span><br><span class="line">    propC: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">required</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">    <span class="comment">// 带有默认值</span></span><br><span class="line">    propD: &#123;<span class="attr">type</span>: <span class="built_in">String</span>, <span class="attr">default</span>: <span class="number">100</span>&#125;,</span><br><span class="line">    <span class="comment">// 对象或数组默认值必须从一个工厂函数获取</span></span><br><span class="line">    propE: &#123;<span class="attr">type</span>: <span class="built_in">Object</span>, <span class="attr">default</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;<span class="attr">message</span>: <span class="string">&#x27;hello&#x27;</span>&#125;</span><br><span class="line">    &#125;&#125;,</span><br><span class="line">    <span class="comment">// 自定义验证函数</span></span><br><span class="line">    propF: &#123;<span class="attr">validator</span>: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;success&#x27;</span>, <span class="string">&#x27;warning&#x27;</span>, <span class="string">&#x27;danger&#x27;</span>].indexOf(value) != -<span class="number">1</span></span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>当 <code>prop</code> 验证失败时, Vue 将会产生一个控制台的警告;</li>
+<li><code>type</code> 可以是 <code>String</code> <code>Number</code> <code>Boolean</code> <code>Array</code> <code>Object</code> <code>Date</code> <code>Function</code> <code>Symbol</code>;</li>
+<li><code>type</code> 也可以是自定义构造函数</li>
+</ul>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">firstName, lastName</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.firstName = firstName</span><br><span class="line">  <span class="built_in">this</span>.lastName = lastName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.component(<span class="string">&#x27;blog-post&#x27;</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    author: Person</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深入 - Vue 之过滤器</title>
+    <url>/2021/01/31/vue-learn-9/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>过滤器可以用在俩地方: <strong>双花括号插值</strong> 和 <strong><code>v-bind</code> 表达式</strong> </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+
+<blockquote>
+<p>过滤器应添加在 <code>JavaScript</code> 表达式的尾部, 由 <code>管道</code> 符号指示:</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在双花括号中 --&gt;</span></span><br><span class="line">&#123;&#123; message | capitalize&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 在 v-bind 中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">&#x27;rawId | fomatId&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在一个组件的 <code>选项</code> 中定义本地的过滤器: (以首字母大写为例)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">    capitalize: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">        value = value.toString()</span><br><span class="line">        <span class="keyword">return</span> value.charAt(<span class="number">0</span>)toUpperCase() + value.slice(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建 <code>Vue</code> 实例之前全局定义过滤器: (同样以首字母大写为例)</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.filter(<span class="string">&#x27;capitalize&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    value = value.toString()</span><br><span class="line">    <span class="keyword">return</span> value.charAt(<span class="number">0</span>).toUpperCase() + value.slice(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>🌀 过滤器的串联是如何使用的? </p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA | filterB&#125;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解释: <code>filterA</code> 被定义为接收单个参数的过滤器函数, 表达式 <code>message</code> 的值作为参数传入函数中; 同样的, 将 <code>filterA</code> 的值作为参数传递到 <code>filterB</code> 中</p>
+<blockquote>
+<p>当然也可以接收多个参数:</p>
+</blockquote>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;&#123; message | filterA(&#x27;agr1&#x27;, &#x27;arg2&#x27;) &#125;&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>vue</tag>
       </tags>
